@@ -1,0 +1,123 @@
+{% extends 'food/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if user.is_authenticated %}Welcome, {{ user.username }}!{% endif %}{% endblock %}
+
+{% block body_block %}
+
+    {% if user.is_authenticated %}
+        <div class="page-header">
+            <h1>Welcome, {{ user.username }}!</h1>
+        </div>
+
+        <div class="row placeholders">
+            <div class="col-xs-12 col-sm-6 placeholder">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Food Intake for Today</h3>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p> Calories: {{ calories_dict.today }} of {{ calories_dict.recommended.amount }} {{ calories_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ calories_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ calories_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Calories From Fat: {{ calories_from_fat_dict.today }} of {{ calories_from_fat_dict.recommended.amount }} {{ calories_from_fat_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ calories_from_fat_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ calories_from_fat_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Total Fat: {{ total_fat_dict.today }} of {{ total_fat_dict.recommended.amount }} {{ total_fat_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ total_fat_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ total_fat_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Saturated Fat: {{ saturated_fat_dict.today }} of {{ saturated_fat_dict.recommended.amount }} {{ saturated_fat_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ saturated_fat_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ saturated_fat_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Trans Fat: {{ trans_fat_dict.today }} of {{ trans_fat_dict.recommended.amount }} {{ trans_fat_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ trans_fat_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ trans_fat_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Cholesterol: {{ cholesterol_dict.today }} of {{ cholesterol_dict.recommended.amount }} {{ cholesterol_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ cholesterol_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ cholesterol_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Sodium: {{ sodium_dict.today }} of {{ sodium_dict.recommended.amount }} {{ sodium_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ sodium_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ sodium_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Total Carbohydrate: {{ total_carbohydrate_dict.today }} of {{ total_carbohydrate_dict.recommended.amount }} {{ total_carbohydrate_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ total_carbohydrate_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ total_carbohydrate_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Dietary Fiber: {{ dietary_fiber_dict.today }} of {{ dietary_fiber_dict.recommended.amount }} {{ dietary_fiber_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ dietary_fiber_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ dietary_fiber_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Sugars: {{ sugars_dict.today }} of {{ sugars_dict.recommended.amount }} {{ sugars_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ sugars_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ sugars_dict.percent }}%</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p> Protein: {{ protein_dict.today }} of {{ protein_dict.recommended.amount }} {{ protein_dict.recommended.unit }}</p>
+                        <div class="bar bar_holder" style="width: 100%; border: 2px solid black; text-align: center; height: 29px; border-radius: 5px;">
+                            <div class="bar bar_calories" style="width:{{ protein_dict.adjusted_percent }}%; height: 25px; position:relative; background: lightgreen;"></div>
+                            <p style="position: relative; top: -23px;">{{ protein_dict.percent }}%</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 placeholder">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List of Items Consumed Today</h3>
+                    </div>
+                </div>
+                {% if entries %}
+                    <ul class="list-group">
+                        {% for e in entries %}
+                            <li class="list-group-item"><p> I ate {{ e.quantity }} of {{ e.entry_item }} on {{ e.date_of_consumption }}</p> </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+
+    {% else %}
+        <h1>Welcome! Please login to view your food log for today</h1>
+        <br />
+    {% endif %}
+
+{% endblock %}

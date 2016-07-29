@@ -1,0 +1,29 @@
+{% extends 'food/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+{% block body_block %}
+    <div class="page-header">
+        <h1>Add an entry to your food log</h1>
+    </div>
+
+    <form id="category_form" method="post" action="/food/add_foodentry/">
+
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+        <p></br></p>
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+
+        <p></br></p>
+        <input type="submit" name="submit" value="Create Food Entry" />
+    </form>
+{% endblock %}

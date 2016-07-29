@@ -1,0 +1,41 @@
+{% extends 'food/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{% if user.is_authenticated %}Welcome, {{ user.username }}!{% endif %}{% endblock %}
+
+{% block body_block %}
+
+    {% if user.is_authenticated %}
+        <div class="page-header">
+            <h1>Welcome, {{ user.username }}!</h1>
+        </div>
+
+        <h2> Food Intake for today </h2>
+
+        <p> Calories: {{ today_calories }}</p>
+        <p> Calories from fat: {{ today_calories_from_fat }}</p>
+        <p> Total fat: {{ today_total_fat }}</p>
+        <p> Saturated Fat: {{ today_saturated_fat }}</p>
+        <p> Trans Fat: {{ today_trans_fat }}</p>
+        <p> Cholesterol: {{ today_cholesterol }}</p>
+        <p> Sodium: {{ today_sodium }}</p>
+        <p> Total Carbohydrate: {{ today_total_carbohydrate }}</p>
+        <p> Dietary Fiber: {{ today_dietary_fiber }}</p>
+        <p> Sugars: {{ today_sugars }}</p>
+        <p> Protein: {{ today_protein }}</p>
+
+        {% if entries %}
+            <ul>
+                {% for e in entries %}
+                    <li><p> I ate {{ e.quantity }} of {{ e.entry_item }} on {{ e.date_of_consumption }}</p> </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    {% else %}
+        <h1>Welcome! Please login to view your food log for today</h1>
+        <br />
+    {% endif %}
+
+{% endblock %}
