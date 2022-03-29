@@ -49,7 +49,7 @@ ndg-httpsclient==0.4.0
 netaddr==0.7.17
 oauthlib==1.0.0
 oneconf==0.3.8
-paramiko==1.15.2
+paramiko==2.10.1
 pbr==1.8.1
 piston-mini-client==0.7.5
 ply==3.7
