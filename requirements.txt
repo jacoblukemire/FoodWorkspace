@@ -5,7 +5,7 @@ MySQL-python==1.2.5
 PAM
 Pillow==3.1.0
 PyJWT==1.0.0
-PyPDF2==1.23
+PyPDF2==1.27.5
 PyYAML==3.11
 SOAPpy==0.12.22
 #Twisted-Core
