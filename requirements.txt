@@ -82,7 +82,7 @@ validate-email==1.3
 virtualenv==14.0.0
 virtualenv-clone==0.2.6
 virtualenvwrapper==4.7.1
-wheel==0.26.0
+wheel==0.38.1
 wsgiref==0.1.2
 wstools==0.4.3
 xdiagnose==3.8.1
